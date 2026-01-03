@@ -489,10 +489,16 @@ export default function Home() {
           </nav>
           <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-gray-500 text-sm">
             <div>© 2026 BEN&apos;S BAP&apos;S. All rights reserved.</div>
-            <div className="flex gap-6">
-              <a href="#" className="hover:text-white transition">Instagram</a>
-              <a href="#" className="hover:text-white transition">Facebook</a>
-              <a href="#" className="hover:text-white transition">Twitter</a>
+            <div>
+              Made by{' '}
+              <a 
+                href="https://muzq.online" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:text-white transition font-medium"
+              >
+                Muzq.online
+              </a>
             </div>
           </div>
         </div>
