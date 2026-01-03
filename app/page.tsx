@@ -149,12 +149,6 @@ export default function Home() {
               <a href="#events" className="text-white hover:text-red-400 transition font-medium">
                 Events
               </a>
-              <button 
-                onClick={() => setShowLogin(true)}
-                className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full font-medium transition-all shadow-lg shadow-red-600/20"
-              >
-                Contact: 0756 1626 764
-              </button>
             </nav>
           </div>
         </header>
