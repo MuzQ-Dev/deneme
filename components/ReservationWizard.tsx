@@ -72,12 +72,12 @@ export function ReservationWizard({ items }: Props) {
     setMessage('');
     if (step === 1) {
       if (!canGoStep2) {
-        setMessage('Lütfen tüm alanları doldurun.');
+        setMessage('Please fill in all fields.');
         return;
       }
       // Email format kontrolü
       if (!isValidEmail(email.trim())) {
-        setMessage('Lütfen geçerli bir e-posta adresi girin. (örn: example@email.com)');
+        setMessage('Please enter a valid email address. (e.g., example@email.com)');
         return;
       }
       setStep(2);
@@ -85,7 +85,7 @@ export function ReservationWizard({ items }: Props) {
     }
     if (step === 2) {
       if (!canGoStep3) {
-        setMessage('En az bir menü seçmelisiniz.');
+        setMessage('Please select at least one menu item.');
         return;
       }
       setStep(3);
@@ -141,7 +141,7 @@ export function ReservationWizard({ items }: Props) {
         const data = await res.json();
 
         if (!data.success) {
-          setMessage(data.message || 'Sipariş oluşturulamadı.');
+          setMessage(data.message || 'Failed to create order.');
           return;
         }
 
@@ -182,7 +182,7 @@ export function ReservationWizard({ items }: Props) {
         <div className="flex flex-col lg:flex-row items-start justify-between gap-10 mb-10">
           <div className="space-y-3">
             <div className="inline-flex items-center rounded-full border border-red-200 bg-red-50 px-4 py-2">
-              <span className="text-xs font-bold uppercase tracking-widest text-red-700">Rezervasyon</span>
+              <span className="text-xs font-bold uppercase tracking-widest text-red-700">Reservation</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
               Rezervasyon ve ödeme
@@ -195,9 +195,9 @@ export function ReservationWizard({ items }: Props) {
           <div className="w-full lg:w-auto">
             <div className="inline-flex items-center gap-2 rounded-full bg-gray-50 border border-gray-200 p-1.5">
               {[
-                { n: 1, t: 'Bilgiler' },
-                { n: 2, t: 'Menü' },
-                { n: 3, t: 'Ödeme' },
+                { n: 1, t: 'Details' },
+                { n: 2, t: 'Menu' },
+                { n: 3, t: 'Payment' },
               ].map((s) => (
                 <div
                   key={s.n}
@@ -219,7 +219,7 @@ export function ReservationWizard({ items }: Props) {
                 <div className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">Ad</label>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">First Name</label>
                       <input
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
@@ -227,7 +227,7 @@ export function ReservationWizard({ items }: Props) {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">Soyad</label>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">Last Name</label>
                       <input
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
@@ -235,7 +235,7 @@ export function ReservationWizard({ items }: Props) {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">E-posta</label>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">Email</label>
                       <input
                         type="email"
                         value={email}
@@ -245,7 +245,7 @@ export function ReservationWizard({ items }: Props) {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">Telefon</label>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">Phone</label>
                       <input
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
@@ -255,7 +255,7 @@ export function ReservationWizard({ items }: Props) {
                       />
                     </div>
                     <div className="md:col-span-2">
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">Adres</label>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">Address</label>
                       <textarea
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
@@ -269,7 +269,7 @@ export function ReservationWizard({ items }: Props) {
 
               {step === 2 && (
                 <div className="space-y-6">
-                  <div className="text-gray-700 font-semibold">Menü seçimi</div>
+                  <div className="text-gray-700 font-semibold">Menu Selection</div>
                   <div className="space-y-4">
                     {items.map((it) => {
                       const checked = !!selected[it.id];
@@ -298,10 +298,10 @@ export function ReservationWizard({ items }: Props) {
                                   onChange={() => toggleItem(it.id)}
                                   className="h-4 w-4"
                                 />
-                                Seç
+                                Select
                               </label>
                               <div className="flex items-center gap-2">
-                                <span className="text-sm text-gray-600">Adet</span>
+                                <span className="text-sm text-gray-600">Quantity</span>
                                 <input
                                   type="number"
                                   min={1}
@@ -322,7 +322,7 @@ export function ReservationWizard({ items }: Props) {
 
               {step === 3 && (
                 <div className="space-y-6">
-                  <div className="text-gray-700 font-semibold">Ödeme</div>
+                  <div className="text-gray-700 font-semibold">Payment</div>
                   <div className="rounded-2xl border border-gray-100 bg-gray-50/40 p-5 space-y-3">
                     {selectedList.map((i) => (
                       <div key={i.id} className="flex items-center justify-between gap-4 text-sm">
@@ -334,7 +334,7 @@ export function ReservationWizard({ items }: Props) {
                     ))}
                     <div className="h-px bg-gray-200 my-2" />
                     <div className="flex items-center justify-between">
-                      <div className="text-gray-700 font-semibold">Toplam</div>
+                      <div className="text-gray-700 font-semibold">Total</div>
                       <div className="text-2xl font-extrabold text-red-600">£{Number(total).toFixed(2)}</div>
                     </div>
                   </div>
@@ -346,9 +346,9 @@ export function ReservationWizard({ items }: Props) {
                           <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                         </svg>
                         <div>
-                          <div className="font-semibold text-amber-900">Test Modu Aktif</div>
+                          <div className="font-semibold text-amber-900">Test Mode Active</div>
                           <div className="text-sm text-amber-700 mt-1">
-                            Ödeme yapılmadan sipariş oluşturulacak ve sipariş numarası verilecektir.
+                            Order will be created without payment and an order number will be provided.
                           </div>
                         </div>
                       </div>
@@ -362,10 +362,10 @@ export function ReservationWizard({ items }: Props) {
                     className="w-full bg-red-600 hover:bg-red-700 disabled:bg-gray-400 text-white font-semibold py-4 rounded-xl transition-all shadow-lg shadow-red-600/20"
                   >
                     {submitting 
-                      ? 'İşleniyor...' 
+                      ? 'Processing...' 
                       : testMode 
-                        ? 'Test Modunda Sipariş Oluştur' 
-                        : 'Kart ile Öde'}
+                        ? 'Create Order in Test Mode' 
+                        : 'Pay with Card'}
                   </button>
                 </div>
               )}
@@ -383,7 +383,7 @@ export function ReservationWizard({ items }: Props) {
                   disabled={step === 1 || submitting}
                   className="px-6 py-3 rounded-xl border border-gray-200 bg-white text-gray-700 font-semibold disabled:opacity-50"
                 >
-                  Geri
+                  Back
                 </button>
                 <button
                   type="button"
@@ -391,7 +391,7 @@ export function ReservationWizard({ items }: Props) {
                   disabled={step === 3 || submitting}
                   className="px-6 py-3 rounded-xl bg-zinc-900 text-white font-semibold disabled:opacity-50"
                 >
-                  Sonraki
+                  Next Step
                 </button>
               </div>
             </div>
@@ -400,28 +400,22 @@ export function ReservationWizard({ items }: Props) {
           <div className="lg:col-span-4">
             <div className="sticky top-6 space-y-6">
               <div className="bg-gray-50 rounded-3xl border border-gray-100 p-6">
-                <div className="text-lg font-bold text-gray-900 mb-2">Özet</div>
+                <div className="text-lg font-bold text-gray-900 mb-2">Summary</div>
                 <div className="text-sm text-gray-600 leading-relaxed">
-                  Sipariş oluşturulur, kart ödemesi sonrası admin panelinde durum güncellenir.
+                  Your order will be created and status will be updated in the admin panel after card payment.
                 </div>
                 <div className="mt-4 space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Seçili ürün</span>
+                    <span className="text-gray-600">Selected Items</span>
                     <span className="font-bold text-gray-900">{selectedList.length}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Toplam</span>
+                    <span className="text-gray-600">Total</span>
                     <span className="font-bold text-red-600">£{Number(total).toFixed(2)}</span>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-6">
-                <div className="text-sm font-bold text-gray-900 mb-2">Bilgi</div>
-                <div className="text-sm text-gray-600">
-                  Ödeme Stripe Checkout ile gerçekleşir. Vercel ortam değişkenlerine Stripe anahtarlarını eklemelisiniz.
-                </div>
-              </div>
             </div>
           </div>
         </div>

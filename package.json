@@ -11,6 +11,7 @@
     "update-table": "tsx update-users-table.ts",
     "setup-menu": "tsx setup-menu-table.ts",
     "update-orders": "tsx update-orders-table.ts",
+    "setup-content": "tsx setup-site-content.ts",
     "setup-orders": "tsx setup-orders-table.ts"
   },
   "dependencies": {

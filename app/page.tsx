@@ -72,7 +72,7 @@ export default function Home() {
 
       if (data.success) {
         localStorage.setItem('user', JSON.stringify(data.user));
-        setMessage('✓ ' + data.message + ' Yönlendiriliyorsunuz...');
+        setMessage('✓ ' + data.message + ' Redirecting...');
         
         setTimeout(() => {
           router.push('/dashboard');
@@ -81,7 +81,7 @@ export default function Home() {
         setMessage('✗ ' + data.message);
       }
     } catch (error) {
-      setMessage('✗ Bağlantı hatası');
+      setMessage('✗ Connection error');
     } finally {
       setLoading(false);
     }
@@ -141,19 +141,19 @@ export default function Home() {
             </div>
             <nav className="hidden md:flex gap-8 items-center">
               <button onClick={() => setShowLogin(false)} className="text-white hover:text-red-400 transition font-medium border-b-2 border-red-600">
-                Ana Sayfa
+                Home
               </button>
               <a href="#menu" className="text-white hover:text-red-400 transition font-medium">
-                Menü
+                Menu
               </a>
               <a href="#events" className="text-white hover:text-red-400 transition font-medium">
-                Etkinlikler
+                Events
               </a>
               <button 
                 onClick={() => setShowLogin(true)}
                 className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full font-medium transition-all shadow-lg shadow-red-600/20"
               >
-                Giriş: 0756 1626 764
+                Contact: 0756 1626 764
               </button>
             </nav>
           </div>
@@ -165,18 +165,18 @@ export default function Home() {
             {!showLogin ? (
               <div className="max-w-3xl space-y-8 animate-fade-in">
                 <div className="inline-flex items-center gap-2 text-white bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20">
-                  <span className="text-sm font-medium tracking-widest uppercase">PROFESYONEL YÖNETİM</span>
+                  <span className="text-sm font-medium tracking-widest uppercase">PROFESSIONAL MANAGEMENT</span>
                 </div>
 
                 <h2 className="text-6xl md:text-8xl font-bold text-white leading-tight drop-shadow-2xl">
-                  Lezzet Sanatla
+                  Taste Meets Art
                   <br />
-                  <span className="text-red-500">Buluşuyor</span>
+                  <span className="text-red-500">Excellence</span>
                 </h2>
 
                 <p className="text-lg md:text-xl text-white/90 leading-relaxed max-w-2xl drop-shadow-lg">
-                  Unutulmaz Tatlar, Kusursuz Etkinlikler. Düğünlerden kurumsal 
-                  toplantılara kadar, benzersiz bir deneyim sunuyoruz.
+                  Unforgettable Flavours, Perfect Events. From weddings to corporate 
+                  meetings, we deliver a unique experience.
                 </p>
 
                 <div className="flex flex-wrap gap-4 pt-4">
@@ -196,13 +196,13 @@ export default function Home() {
                 <div className="bg-white/95 backdrop-blur-xl border border-gray-200 rounded-2xl p-8 shadow-[0_20px_50px_rgba(0,0,0,0.1)]">
                   <div className="text-center mb-8">
                     <h2 className="text-3xl font-bold text-gray-900 mb-2">Panele Giriş</h2>
-                    <p className="text-gray-500">Hesabınıza giriş yapın</p>
+                    <p className="text-gray-500">Login to your account</p>
                   </div>
 
                   <form onSubmit={handleLogin} className="space-y-6">
                     <div>
                       <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-2">
-                        Kullanıcı Adı
+                        Username
                       </label>
                       <input
                         id="username"
@@ -210,14 +210,14 @@ export default function Home() {
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent transition-all"
-                        placeholder="Kullanıcı adınız"
+                        placeholder="Your username"
                         required
                       />
                     </div>
 
                     <div>
                       <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-                        Şifre
+                        Password
                       </label>
                       <input
                         id="password"
@@ -225,7 +225,7 @@ export default function Home() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent transition-all"
-                        placeholder="Şifreniz"
+                        placeholder="Your password"
                         required
                       />
                     </div>
@@ -235,7 +235,7 @@ export default function Home() {
                       disabled={loading}
                       className="w-full bg-red-600 hover:bg-red-700 disabled:bg-gray-400 text-white font-semibold py-3 rounded-lg transition-all shadow-lg shadow-red-600/20"
                     >
-                      {loading ? 'Giriş yapılıyor...' : 'Giriş Yap'}
+                      {loading ? 'Logging in...' : 'Login'}
                     </button>
                   </form>
 
