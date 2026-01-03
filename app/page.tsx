@@ -485,7 +485,12 @@ export default function Home() {
             <a href="#" className="hover:text-white transition">Home</a>
             <a href="#" className="hover:text-white transition">Menu</a>
             <a href="#" className="hover:text-white transition">About</a>
-            <a href="#" className="hover:text-white transition">Contact</a>
+            <a href="tel:+447561626764" className="hover:text-white transition flex items-center gap-2">
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+              Contact
+            </a>
           </nav>
           <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-gray-500 text-sm">
             <div>© 2026 BEN&apos;S BAP&apos;S. All rights reserved.</div>
