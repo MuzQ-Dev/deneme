@@ -6,19 +6,19 @@ export async function POST(request: NextRequest) {
   try {
     const { sessionId } = await request.json();
     if (!sessionId) {
-      return NextResponse.json({ success: false, message: 'sessionId gerekli' }, { status: 400 });
+      return NextResponse.json({ success: false, message: 'sessionId required' }, { status: 400 });
     }
 
     const stripeKey = process.env.STRIPE_SECRET_KEY;
     if (!stripeKey) {
-      return NextResponse.json({ success: false, message: 'Stripe yapılandırılmamış' }, { status: 500 });
+      return NextResponse.json({ success: false, message: 'Stripe not configured' }, { status: 500 });
     }
 
     const stripe = new Stripe(stripeKey, { apiVersion: '2025-07-30.basil' as any });
     const session = await stripe.checkout.sessions.retrieve(sessionId);
 
     if (!session || session.payment_status !== 'paid') {
-      return NextResponse.json({ success: false, message: 'Ödeme doğrulanamadı' }, { status: 400 });
+      return NextResponse.json({ success: false, message: 'Payment could not be verified' }, { status: 400 });
     }
 
     const orderIdFromMeta = session.metadata?.orderId ? Number(session.metadata.orderId) : null;
@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
       }
 
       if (!orderRow) {
-        return NextResponse.json({ success: false, message: 'Sipariş bulunamadı' }, { status: 404 });
+        return NextResponse.json({ success: false, message: 'Order not found' }, { status: 404 });
       }
 
       await connection.execute(
@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
     }
   } catch (error) {
     console.error('Confirm error:', error);
-    return NextResponse.json({ success: false, message: 'Doğrulama hatası' }, { status: 500 });
+    return NextResponse.json({ success: false, message: 'Verification error' }, { status: 500 });
   }
 }
 

@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
     const stripeKey = process.env.STRIPE_SECRET_KEY;
     if (!stripeKey) {
       return NextResponse.json(
-        { success: false, message: 'Ödeme sistemi yapılandırılmamış (STRIPE_SECRET_KEY eksik)' },
+        { success: false, message: 'Payment system not configured (STRIPE_SECRET_KEY missing)' },
         { status: 500 }
       );
     }
@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
       }).filter(Boolean);
 
       if (orderItems.length === 0) {
-        return NextResponse.json({ success: false, message: 'Seçilen menüler bulunamadı' }, { status: 400 });
+        return NextResponse.json({ success: false, message: 'Selected menu items not found' }, { status: 400 });
       }
 
       // Siparişi oluştur (pending_payment)
@@ -121,7 +121,7 @@ export async function POST(request: NextRequest) {
     }
   } catch (error: any) {
     console.error('Checkout error:', error);
-    return NextResponse.json({ success: false, message: 'Ödeme başlatılamadı' }, { status: 500 });
+    return NextResponse.json({ success: false, message: 'Failed to start payment' }, { status: 500 });
   }
 }
 

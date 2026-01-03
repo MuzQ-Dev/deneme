@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
     
     if (!username || !password) {
       return NextResponse.json(
-        { success: false, message: 'Kullanıcı adı ve şifre gerekli' },
+        { success: false, message: 'Username and password required' },
         { status: 400 }
       );
     }
@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
       
       if (rows.length === 0) {
         return NextResponse.json(
-          { success: false, message: 'Kullanıcı bulunamadı' },
+          { success: false, message: 'User not found' },
           { status: 401 }
         );
       }
@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
       
       if (!isPasswordValid) {
         return NextResponse.json(
-          { success: false, message: 'Şifre yanlış' },
+          { success: false, message: 'Incorrect password' },
           { status: 401 }
         );
       }
@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
       // Başarılı giriş
       return NextResponse.json({
         success: true,
-        message: 'Giriş başarılı!',
+        message: 'Login successful!',
         user: {
           id: user.id,
           username: user.username,
@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Login error:', error);
     return NextResponse.json(
-      { success: false, message: 'Sunucu hatası' },
+      { success: false, message: 'Server error' },
       { status: 500 }
     );
   }

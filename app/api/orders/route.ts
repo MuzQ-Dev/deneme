@@ -48,7 +48,7 @@ export async function PUT(request: NextRequest) {
     const { id, status, adminNote, firstName, lastName, phone, email, address } = body || {};
 
     if (!id) {
-      return NextResponse.json({ success: false, message: 'Sipariş ID gerekli' }, { status: 400 });
+      return NextResponse.json({ success: false, message: 'Order ID required' }, { status: 400 });
     }
 
     const connection = await getConnection();
@@ -68,7 +68,7 @@ export async function PUT(request: NextRequest) {
 
       const [rows]: any = await connection.execute('SELECT * FROM orders WHERE id = ?', [id]);
       const order = rows?.[0];
-      if (!order) return NextResponse.json({ success: false, message: 'Sipariş bulunamadı' }, { status: 404 });
+      if (!order) return NextResponse.json({ success: false, message: 'Order not found' }, { status: 404 });
 
       return NextResponse.json({
         success: true,

@@ -9,7 +9,7 @@ export async function PUT(request: NextRequest) {
     
     if (!userId) {
       return NextResponse.json(
-        { success: false, message: 'Kullanıcı ID gerekli' },
+        { success: false, message: 'User ID required' },
         { status: 400 }
       );
     }
@@ -35,7 +35,7 @@ export async function PUT(request: NextRequest) {
       
       return NextResponse.json({
         success: true,
-        message: 'Profil güncellendi',
+        message: 'Profile updated',
         user: rows[0]
       });
       
@@ -46,7 +46,7 @@ export async function PUT(request: NextRequest) {
   } catch (error) {
     console.error('Profile update error:', error);
     return NextResponse.json(
-      { success: false, message: 'Sunucu hatası' },
+      { success: false, message: 'Server error' },
       { status: 500 }
     );
   }
@@ -59,7 +59,7 @@ export async function DELETE(request: NextRequest) {
     
     if (!userId) {
       return NextResponse.json(
-        { success: false, message: 'Kullanıcı ID gerekli' },
+        { success: false, message: 'User ID required' },
         { status: 400 }
       );
     }
@@ -90,7 +90,7 @@ export async function DELETE(request: NextRequest) {
       
       return NextResponse.json({
         success: true,
-        message: 'Profil resmi silindi'
+        message: 'Profile image deleted'
       });
       
     } finally {
@@ -100,7 +100,7 @@ export async function DELETE(request: NextRequest) {
   } catch (error) {
     console.error('Profile image delete error:', error);
     return NextResponse.json(
-      { success: false, message: 'Sunucu hatası' },
+      { success: false, message: 'Server error' },
       { status: 500 }
     );
   }

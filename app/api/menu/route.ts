@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
     
     if (!title || !category || !price) {
       return NextResponse.json(
-        { success: false, message: 'Başlık, kategori ve fiyat gerekli' },
+        { success: false, message: 'Title, category, and price required' },
         { status: 400 }
       );
     }
@@ -68,7 +68,7 @@ export async function POST(request: NextRequest) {
       
       return NextResponse.json({
         success: true,
-        message: 'Menü başarıyla eklendi',
+        message: 'Menu item added successfully',
         item: items[0]
       });
       
@@ -92,7 +92,7 @@ export async function PUT(request: NextRequest) {
     
     if (!id || !title || !category || !price) {
       return NextResponse.json(
-        { success: false, message: 'ID, başlık, kategori ve fiyat gerekli' },
+        { success: false, message: 'ID, title, category, and price required' },
         { status: 400 }
       );
     }
@@ -115,7 +115,7 @@ export async function PUT(request: NextRequest) {
       
       return NextResponse.json({
         success: true,
-        message: 'Menü başarıyla güncellendi',
+        message: 'Menu item updated successfully',
         item: items[0]
       });
       
@@ -140,7 +140,7 @@ export async function DELETE(request: NextRequest) {
     
     if (!id) {
       return NextResponse.json(
-        { success: false, message: 'Menü ID gerekli' },
+        { success: false, message: 'Menu ID required' },
         { status: 400 }
       );
     }
@@ -171,7 +171,7 @@ export async function DELETE(request: NextRequest) {
       
       return NextResponse.json({
         success: true,
-        message: 'Menü başarıyla silindi'
+        message: 'Menu item deleted successfully'
       });
       
     } finally {

@@ -30,11 +30,11 @@ type Order = {
 };
 
 const statusLabel: Record<OrderStatus, string> = {
-  pending_payment: 'Ödeme bekleniyor',
-  paid: 'Ödendi',
-  accepted: 'Kabul edildi',
-  rejected: 'Reddedildi',
-  cancelled: 'İptal',
+  pending_payment: 'Pending Payment',
+  paid: 'Paid',
+  accepted: 'Accepted',
+  rejected: 'Rejected',
+  cancelled: 'Cancelled',
 };
 
 export default function OrdersManagementPage() {
@@ -106,7 +106,7 @@ export default function OrdersManagementPage() {
       });
       const data = await res.json();
       if (data.success) {
-        setMessage('Kaydedildi');
+        setMessage('Saved');
         await fetchOrders();
         // günceli tekrar aç
         const updated = (data.order as Order) || null;
@@ -151,18 +151,18 @@ export default function OrdersManagementPage() {
             <div className="text-2xl font-bold text-white">BEN&apos;S BAP&apos;S</div>
             <nav className="hidden md:flex gap-4">
               <button onClick={() => router.push('/dashboard')} className="text-gray-400 hover:text-white transition">
-                Profil
+                Profile
               </button>
               <button onClick={() => router.push('/menu-management')} className="text-gray-400 hover:text-white transition">
-                Menü Yönetimi
+                Menu Management
               </button>
               <button className="text-white font-bold border-b-2 border-red-600">
-                Siparişler
+                Orders
               </button>
             </nav>
           </div>
           <button onClick={handleLogout} className="bg-red-700 hover:bg-red-800 text-white px-6 py-2 rounded-md font-medium transition-all">
-            Çıkış Yap
+            Logout
           </button>
         </div>
       </header>
@@ -170,16 +170,16 @@ export default function OrdersManagementPage() {
       <div className="max-w-7xl mx-auto px-6 py-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
           <div>
-            <h1 className="text-4xl font-bold text-white mb-2">Sipariş Yönetimi</h1>
-            <p className="text-gray-400">Siparişleri görüntüle, kabul et, reddet ve not ekle.</p>
+            <h1 className="text-4xl font-bold text-white mb-2">Order Management</h1>
+            <p className="text-gray-400">View orders, accept, reject, and add notes.</p>
           </div>
           <div className="flex flex-col md:flex-row gap-4">
             <div className="inline-flex bg-zinc-800 border border-zinc-700 rounded-full p-1.5">
               {[
-                { key: 'all', label: `Tümü (${counts.all || 0})` },
-                { key: 'paid', label: `Ödendi (${counts.paid || 0})` },
-                { key: 'accepted', label: `Kabul (${counts.accepted || 0})` },
-                { key: 'rejected', label: `Red (${counts.rejected || 0})` },
+                { key: 'all', label: `All (${counts.all || 0})` },
+                { key: 'paid', label: `Paid (${counts.paid || 0})` },
+                { key: 'accepted', label: `Accepted (${counts.accepted || 0})` },
+                { key: 'rejected', label: `Rejected (${counts.rejected || 0})` },
               ].map((t) => (
                 <button
                   key={t.key}
@@ -214,9 +214,9 @@ export default function OrdersManagementPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                 </svg>
                 <div>
-                  <h3 className="text-lg font-bold text-amber-400">Yarım Kalan Siparişler</h3>
+                  <h3 className="text-lg font-bold text-amber-400">Pending Orders</h3>
                   <p className="text-sm text-amber-300/80 mt-1">
-                    {pendingOrders.length} sipariş ödeme bekliyor
+                    {pendingOrders.length} orders awaiting payment
                   </p>
                 </div>
               </div>
@@ -224,7 +224,7 @@ export default function OrdersManagementPage() {
                 onClick={() => setShowPending(true)}
                 className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-2 rounded-lg font-semibold transition"
               >
-                Görüntüle
+                View
               </button>
             </div>
           </div>
@@ -233,7 +233,7 @@ export default function OrdersManagementPage() {
         {showPending && (
           <div className="mb-8">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-white">Yarım Kalan Siparişler</h2>
+              <h2 className="text-2xl font-bold text-white">Pending Orders</h2>
               <button
                 onClick={() => setShowPending(false)}
                 className="text-gray-400 hover:text-white"
@@ -252,16 +252,16 @@ export default function OrdersManagementPage() {
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <div className="text-lg font-extrabold text-amber-400">Sipariş #{o.id}</div>
+                      <div className="text-lg font-extrabold text-amber-400">Order #{o.id}</div>
                       <div className="text-sm text-amber-300/80 mt-1">{o.first_name} {o.last_name}</div>
                     </div>
                     <span className={statusPill(o.status)}>{statusLabel[o.status]}</span>
                   </div>
                   <div className="mt-4 flex items-center justify-between">
-                    <div className="text-sm text-amber-300/80">Toplam</div>
+                    <div className="text-sm text-amber-300/80">Total</div>
                     <div className="text-xl font-extrabold text-amber-400">{totalFmt(o.total_amount)}</div>
                   </div>
-                  <div className="mt-4 text-xs text-amber-400/60">Oluşturma: {new Date(o.created_at).toLocaleString()}</div>
+                  <div className="mt-4 text-xs text-amber-400/60">Created: {new Date(o.created_at).toLocaleString()}</div>
                 </button>
               ))}
             </div>
@@ -287,16 +287,16 @@ export default function OrdersManagementPage() {
               >
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <div className="text-lg font-extrabold text-white">Sipariş #{o.id}</div>
+                    <div className="text-lg font-extrabold text-white">Order #{o.id}</div>
                     <div className="text-sm text-gray-400 mt-1">{o.first_name} {o.last_name}</div>
                   </div>
                   <span className={statusPill(o.status)}>{statusLabel[o.status]}</span>
                 </div>
                 <div className="mt-4 flex items-center justify-between">
-                  <div className="text-sm text-gray-400">Toplam</div>
+                  <div className="text-sm text-gray-400">Total</div>
                   <div className="text-xl font-extrabold text-red-600">{totalFmt(o.total_amount)}</div>
                 </div>
-                <div className="mt-4 text-xs text-gray-500">Oluşturma: {new Date(o.created_at).toLocaleString()}</div>
+                <div className="mt-4 text-xs text-gray-500">Created: {new Date(o.created_at).toLocaleString()}</div>
               </button>
             ))}
           </div>
@@ -309,7 +309,7 @@ export default function OrdersManagementPage() {
             <div className="p-8">
               <div className="flex justify-between items-start gap-4">
                 <div className="flex-1">
-                  <div className="text-2xl font-extrabold text-white mb-3">Sipariş #{active.id}</div>
+                  <div className="text-2xl font-extrabold text-white mb-3">Order #{active.id}</div>
                   <div className="space-y-2">
                     <div className="flex items-center gap-2">
                       <svg className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -341,7 +341,7 @@ export default function OrdersManagementPage() {
                 <button
                   onClick={() => setActive(null)}
                   className="text-gray-400 hover:text-white"
-                  aria-label="Kapat"
+                  aria-label="Close"
                 >
                   <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -351,13 +351,13 @@ export default function OrdersManagementPage() {
 
               <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="rounded-2xl border border-zinc-700 bg-zinc-900/50 p-5">
-                  <div className="text-sm font-bold text-gray-300 mb-3">Sipariş Durumu</div>
+                  <div className="text-sm font-bold text-gray-300 mb-3">Order Status</div>
                   <div className="flex items-center justify-between gap-4">
                     <span className={statusPill(active.status)}>{statusLabel[active.status]}</span>
                     <div className="text-xl font-extrabold text-red-600">{totalFmt(active.total_amount)}</div>
                   </div>
                   <div className="mt-4 pt-4 border-t border-zinc-700">
-                    <div className="text-xs text-gray-500">Sipariş Tarihi</div>
+                    <div className="text-xs text-gray-500">Order Date</div>
                     <div className="text-sm text-gray-300 mt-1">{new Date(active.created_at).toLocaleString('en-GB', { 
                       day: 'numeric', 
                       month: 'long', 
@@ -368,7 +368,7 @@ export default function OrdersManagementPage() {
                   </div>
                 </div>
                 <div className="rounded-2xl border border-zinc-700 bg-zinc-900/50 p-5">
-                  <div className="text-sm font-bold text-gray-300 mb-3">İletişim Bilgileri</div>
+                  <div className="text-sm font-bold text-gray-300 mb-3">Contact Information</div>
                   <div className="space-y-2 text-sm">
                     <div className="flex items-center gap-2 text-gray-400">
                       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -387,7 +387,7 @@ export default function OrdersManagementPage() {
               </div>
 
               <div className="mt-6 rounded-2xl border border-zinc-700 bg-zinc-900/50 p-5">
-                <div className="text-sm font-bold text-gray-300 mb-3">Sipariş Detayları</div>
+                <div className="text-sm font-bold text-gray-300 mb-3">Order Details</div>
                 <div className="space-y-2">
                   {active.items?.map((it, idx) => (
                     <div key={idx} className="flex items-center justify-between text-sm">
@@ -401,7 +401,7 @@ export default function OrdersManagementPage() {
               </div>
 
               <div className="mt-6 rounded-2xl border border-zinc-700 bg-zinc-900/50 p-5">
-                <div className="text-sm font-bold text-gray-300 mb-2">Admin Notu</div>
+                <div className="text-sm font-bold text-gray-300 mb-2">Admin Note</div>
                 <textarea
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
@@ -420,21 +420,21 @@ export default function OrdersManagementPage() {
                   onClick={() => updateStatus('accepted')}
                   className="flex-1 bg-green-600 hover:bg-green-700 disabled:bg-gray-600 text-white font-semibold py-3 rounded-xl"
                 >
-                  Kabul Et
+                  Accept
                 </button>
                 <button
                   disabled={saving}
                   onClick={() => updateStatus('rejected')}
                   className="flex-1 bg-red-600 hover:bg-red-700 disabled:bg-gray-600 text-white font-semibold py-3 rounded-xl"
                 >
-                  Reddet
+                  Reject
                 </button>
                 <button
                   disabled={saving}
                   onClick={() => updateStatus(active.status)}
                   className="flex-1 bg-zinc-700 hover:bg-zinc-600 disabled:bg-gray-600 text-white font-semibold py-3 rounded-xl"
                 >
-                  Kaydet
+                  Save
                 </button>
               </div>
             </div>

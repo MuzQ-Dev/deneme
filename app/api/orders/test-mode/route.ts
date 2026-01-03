@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
     const { firstName, lastName, phone, email, address, selectedItems } = body;
 
     if (!firstName || !lastName || !phone || !email || !address || !selectedItems || selectedItems.length === 0) {
-      return NextResponse.json({ success: false, message: 'Tüm alanlar ve en az bir menü gerekli' }, { status: 400 });
+      return NextResponse.json({ success: false, message: 'All fields and at least one menu item required' }, { status: 400 });
     }
 
     const connection = await getConnection();

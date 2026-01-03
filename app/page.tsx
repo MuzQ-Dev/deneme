@@ -44,7 +44,7 @@ export default function Home() {
         setMenuItems(items);
       }
     } catch (error) {
-      console.error('Menü yükleme hatası:', error);
+      console.error('Menu loading error:', error);
     } finally {
       setLoadingMenu(false);
     }
@@ -187,7 +187,7 @@ export default function Home() {
                     </svg>
                   </button>
                   <button className="bg-white/10 hover:bg-white/20 border-2 border-white/50 text-white px-8 py-4 rounded-md font-semibold transition-all backdrop-blur-sm">
-                    Menüyü Görüntüle
+                    View Menu
                   </button>
                 </div>
               </div>
@@ -251,7 +251,7 @@ export default function Home() {
 
                   <div className="mt-6 text-center">
                     <button onClick={() => setShowLogin(false)} className="text-gray-500 hover:text-gray-900 transition text-sm font-medium">
-                      ← Ana Sayfaya Dön
+                      ← Back to Home
                     </button>
                   </div>
                 </div>
@@ -389,7 +389,7 @@ export default function Home() {
             {loadingMenu ? (
               <div className="col-span-2 text-center py-20">
                 <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-red-600"></div>
-                <p className="mt-4 text-gray-500">Menü yükleniyor...</p>
+                <p className="mt-4 text-gray-500">Loading menu...</p>
               </div>
             ) : filteredItems.length === 0 ? (
               <div className="col-span-2 text-center py-20">
@@ -445,7 +445,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center mb-16 space-y-4">
             <h2 className="text-red-600 font-bold uppercase tracking-widest text-sm">Yorumlar</h2>
-            <h3 className="text-4xl md:text-5xl font-bold text-gray-900">Müşterilerimiz Ne Diyor?</h3>
+            <h3 className="text-4xl md:text-5xl font-bold text-gray-900">What Our Clients Say</h3>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -483,13 +483,13 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 text-center space-y-12">
           <div className="text-3xl font-bold tracking-wider">BEN&apos;S BAP&apos;S</div>
           <nav className="flex flex-wrap justify-center gap-10 text-gray-400 font-medium">
-            <a href="#" className="hover:text-white transition">Ana Sayfa</a>
-            <a href="#" className="hover:text-white transition">Menü</a>
-            <a href="#" className="hover:text-white transition">Hakkımızda</a>
-            <a href="#" className="hover:text-white transition">İletişim</a>
+            <a href="#" className="hover:text-white transition">Home</a>
+            <a href="#" className="hover:text-white transition">Menu</a>
+            <a href="#" className="hover:text-white transition">About</a>
+            <a href="#" className="hover:text-white transition">Contact</a>
           </nav>
           <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-gray-500 text-sm">
-            <div>© 2026 BEN&apos;S BAP&apos;S. Tüm hakları saklıdır.</div>
+            <div>© 2026 BEN&apos;S BAP&apos;S. All rights reserved.</div>
             <div className="flex gap-6">
               <a href="#" className="hover:text-white transition">Instagram</a>
               <a href="#" className="hover:text-white transition">Facebook</a>

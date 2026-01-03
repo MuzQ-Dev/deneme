@@ -118,7 +118,7 @@ export default function MenuManagement() {
       const data = await response.json();
 
       if (data.success) {
-        setMessage(`✓ Menü ${editingItem ? 'güncellendi' : 'eklendi'}!`);
+        setMessage(`✓ Menu ${editingItem ? 'updated' : 'added'}!`);
         fetchMenuItems();
         resetForm();
         setTimeout(() => setShowModal(false), 1500);
@@ -126,7 +126,7 @@ export default function MenuManagement() {
         setMessage('✗ ' + data.message);
       }
     } catch (error) {
-      setMessage('✗ İşlem hatası');
+      setMessage('✗ Operation error');
     } finally {
       setSubmitting(false);
     }
@@ -143,7 +143,7 @@ export default function MenuManagement() {
   };
 
   const handleDelete = async (id: number) => {
-    if (!confirm('Bu menüyü silmek istediğinize emin misiniz?')) return;
+    if (!confirm('Are you sure you want to delete this menu item?')) return;
 
     try {
       const response = await fetch(`/api/menu?id=${id}`, {
@@ -153,12 +153,12 @@ export default function MenuManagement() {
       const data = await response.json();
 
       if (data.success) {
-        setMessage('✓ Menü silindi!');
+        setMessage('✓ Menu item deleted!');
         fetchMenuItems();
         setTimeout(() => setMessage(''), 3000);
       }
     } catch (error) {
-      setMessage('✗ Silme hatası');
+      setMessage('✗ Delete error');
     }
   };
 
@@ -191,25 +191,25 @@ export default function MenuManagement() {
                   onClick={() => router.push('/dashboard')}
                   className="text-gray-400 hover:text-white transition"
                 >
-                  Profil
-                </button>
-                <button className="text-white font-bold border-b-2 border-red-600">
-                  Menü Yönetimi
-                </button>
-                <button
-                  onClick={() => router.push('/orders-management')}
-                  className="text-gray-400 hover:text-white transition"
-                >
-                  Siparişler
-                </button>
-              </nav>
-            </div>
-            <button
-              onClick={handleLogout}
-              className="bg-red-700 hover:bg-red-800 text-white px-6 py-2 rounded-md font-medium transition-all"
-            >
-              Çıkış Yap
-            </button>
+                Profile
+              </button>
+              <button className="text-white font-bold border-b-2 border-red-600">
+                Menu Management
+              </button>
+              <button
+                onClick={() => router.push('/orders-management')}
+                className="text-gray-400 hover:text-white transition"
+              >
+                Orders
+              </button>
+            </nav>
+          </div>
+          <button
+            onClick={handleLogout}
+            className="bg-red-700 hover:bg-red-800 text-white px-6 py-2 rounded-md font-medium transition-all"
+          >
+            Logout
+          </button>
           </div>
         </div>
       </header>
@@ -219,8 +219,8 @@ export default function MenuManagement() {
         {/* Top Actions */}
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h2 className="text-4xl font-bold text-white mb-2">Menü Yönetimi</h2>
-            <p className="text-gray-400">Menüleri ekle, düzenle veya sil</p>
+            <h2 className="text-4xl font-bold text-white mb-2">Menu Management</h2>
+            <p className="text-gray-400">Add, edit, or delete menu items</p>
           </div>
           <button
             onClick={() => {
@@ -232,7 +232,7 @@ export default function MenuManagement() {
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
             </svg>
-            Yeni Menü Ekle
+            Add New Menu Item
           </button>
         </div>
 
@@ -280,13 +280,13 @@ export default function MenuManagement() {
                       onClick={() => handleEdit(item)}
                       className="flex-1 bg-zinc-700 hover:bg-zinc-600 text-white px-4 py-2 rounded-lg font-medium transition"
                     >
-                      Düzenle
+                      Edit
                     </button>
                     <button
                       onClick={() => handleDelete(item.id)}
                       className="flex-1 bg-red-900/30 hover:bg-red-900/50 text-red-400 px-4 py-2 rounded-lg font-medium transition border border-red-800"
                     >
-                      Sil
+                      Delete
                     </button>
                   </div>
                 </div>
@@ -303,7 +303,7 @@ export default function MenuManagement() {
             <div className="p-8">
               <div className="flex justify-between items-center mb-6">
                 <h3 className="text-2xl font-bold text-white">
-                  {editingItem ? 'Menüyü Düzenle' : 'Yeni Menü Ekle'}
+                  {editingItem ? 'Edit Menu Item' : 'Add New Menu Item'}
                 </h3>
                 <button
                   onClick={() => {
@@ -321,13 +321,13 @@ export default function MenuManagement() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Image Upload */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">Resim</label>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">Image</label>
                   <div className="flex items-center gap-4">
                     {imagePreview && (
                       <img src={imagePreview} alt="Preview" className="w-24 h-24 rounded-lg object-cover" />
                     )}
                     <label className="flex-1 bg-zinc-700 hover:bg-zinc-600 text-white px-4 py-3 rounded-lg cursor-pointer transition text-center font-medium">
-                      Resim Seç
+                      Select Image
                       <input
                         type="file"
                         accept="image/*"
@@ -341,7 +341,7 @@ export default function MenuManagement() {
                 {/* Title */}
                 <div>
                   <label htmlFor="title" className="block text-sm font-medium text-gray-300 mb-2">
-                    Başlık *
+                    Title *
                   </label>
                   <input
                     id="title"
@@ -356,7 +356,7 @@ export default function MenuManagement() {
                 {/* Description */}
                 <div>
                   <label htmlFor="description" className="block text-sm font-medium text-gray-300 mb-2">
-                    Açıklama
+                    Description
                   </label>
                   <textarea
                     id="description"
@@ -371,7 +371,7 @@ export default function MenuManagement() {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="category" className="block text-sm font-medium text-gray-300 mb-2">
-                      Kategori *
+                      Category *
                     </label>
                     <select
                       id="category"
@@ -388,7 +388,7 @@ export default function MenuManagement() {
 
                   <div>
                     <label htmlFor="price" className="block text-sm font-medium text-gray-300 mb-2">
-                      Fiyat (£) *
+                      Price (£) *
                     </label>
                     <input
                       id="price"

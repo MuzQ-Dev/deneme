@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
     
     return NextResponse.json({
       success: true,
-      message: 'Resim yüklendi',
+      message: 'Image uploaded',
       url: uploadResult.secure_url,
       publicId: uploadResult.public_id
     });

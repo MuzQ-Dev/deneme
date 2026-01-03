@@ -98,7 +98,7 @@ export default function Dashboard() {
       const data = await response.json();
 
       if (data.success) {
-        setMessage('✓ Profil başarıyla güncellendi!');
+        setMessage('✓ Profile updated successfully!');
         const updatedUser = { ...user, ...data.user };
         setUser(updatedUser as User);
         localStorage.setItem('user', JSON.stringify(updatedUser));
@@ -107,7 +107,7 @@ export default function Dashboard() {
         setMessage('✗ ' + data.message);
       }
     } catch (error) {
-      setMessage('✗ Güncelleme hatası: ' + error);
+      setMessage('✗ Update error: ' + error);
     } finally {
       setLoading(false);
     }
@@ -131,7 +131,7 @@ export default function Dashboard() {
       const data = await response.json();
 
       if (data.success) {
-        setMessage('✓ Profil resmi silindi!');
+        setMessage('✓ Profile image deleted!');
         const updatedUser = { ...user, profile_image: null, cloudinary_public_id: null };
         setUser(updatedUser);
         localStorage.setItem('user', JSON.stringify(updatedUser));
@@ -140,7 +140,7 @@ export default function Dashboard() {
         setMessage('✗ ' + data.message);
       }
     } catch (error) {
-      setMessage('✗ Silme hatası');
+      setMessage('✗ Delete error');
     } finally {
       setLoading(false);
     }
@@ -175,19 +175,19 @@ export default function Dashboard() {
               <h1 className="text-2xl font-bold text-white">BEN&apos;S BAP&apos;S</h1>
               <nav className="hidden md:flex gap-4">
                 <button className="text-white font-bold border-b-2 border-red-600">
-                  Profil
+                  Profile
                 </button>
                 <button
                   onClick={() => router.push('/menu-management')}
                   className="text-gray-400 hover:text-white transition"
                 >
-                  Menü Yönetimi
+                  Menu Management
                 </button>
                 <button
                   onClick={() => router.push('/orders-management')}
                   className="text-gray-400 hover:text-white transition"
                 >
-                  Siparişler
+                  Orders
                 </button>
               </nav>
             </div>
@@ -195,7 +195,7 @@ export default function Dashboard() {
               onClick={handleLogout}
               className="bg-red-700 hover:bg-red-800 text-white px-6 py-2 rounded-md font-medium transition-all"
             >
-              Çıkış Yap
+              Logout
             </button>
           </div>
         </div>
@@ -208,14 +208,14 @@ export default function Dashboard() {
           <div className="flex justify-between items-start mb-4">
             <div>
               <h2 className="text-4xl font-bold text-white mb-2">
-                Hoş Geldin, <span className="text-red-600">@{user.username}</span>
+                Welcome, <span className="text-red-600">@{user.username}</span>
               </h2>
-              <p className="text-gray-400">Profil bilgilerini yönet ve düzenle</p>
+              <p className="text-gray-400">Manage and edit your profile information</p>
             </div>
             {/* Test Mode Toggle */}
             <div className="bg-zinc-800 border border-zinc-700 rounded-xl p-4">
               <div className="flex items-center gap-3">
-                <span className="text-sm font-medium text-gray-300">Test Modu</span>
+                <span className="text-sm font-medium text-gray-300">Test Mode</span>
                 <button
                   onClick={toggleTestMode}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
@@ -229,13 +229,13 @@ export default function Dashboard() {
                   />
                 </button>
                 {testMode && (
-                  <span className="text-xs text-amber-400 font-semibold">Aktif</span>
+                  <span className="text-xs text-amber-400 font-semibold">Active</span>
                 )}
               </div>
               <p className="text-xs text-gray-500 mt-2">
                 {testMode 
-                  ? 'Ödeme yapılmadan sipariş oluşturulacak' 
-                  : 'Gerçek ödeme sistemi kullanılacak'}
+                  ? 'Orders will be created without payment' 
+                  : 'Real payment system will be used'}
               </p>
             </div>
           </div>
@@ -246,7 +246,7 @@ export default function Dashboard() {
           {/* Profile Image Card */}
           <div className="lg:col-span-1">
             <div className="bg-zinc-800 border border-zinc-700 rounded-xl p-6">
-              <h3 className="text-xl font-bold text-white mb-6">Profil Fotoğrafı</h3>
+              <h3 className="text-xl font-bold text-white mb-6">Profile Photo</h3>
               
               <div className="flex flex-col items-center">
                 <div className="relative group mb-6">
@@ -258,7 +258,7 @@ export default function Dashboard() {
                         className="w-40 h-40 rounded-full object-cover border-4 border-red-600 shadow-xl"
                       />
                       <div className="absolute inset-0 bg-black/60 rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <span className="text-white text-sm font-medium">Değiştir</span>
+                        <span className="text-white text-sm font-medium">Change</span>
                       </div>
                     </div>
                   ) : (
@@ -273,7 +273,7 @@ export default function Dashboard() {
                 <div className="w-full space-y-3">
                   <label className="block">
                     <div className="bg-gradient-to-r from-red-700 to-red-800 hover:from-red-800 hover:to-red-900 text-white px-6 py-3 rounded-lg cursor-pointer transition-all text-center font-medium shadow-lg">
-                      Resim Seç
+                      Select Image
                     </div>
                     <input
                       type="file"
@@ -290,7 +290,7 @@ export default function Dashboard() {
                       disabled={loading}
                       className="w-full bg-zinc-700 hover:bg-zinc-600 text-white px-6 py-3 rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed font-medium"
                     >
-                      Resmi Sil
+                      Delete Image
                     </button>
                   )}
                 </div>
@@ -301,14 +301,14 @@ export default function Dashboard() {
           {/* Profile Form Card */}
           <div className="lg:col-span-2">
             <div className="bg-zinc-800 border border-zinc-700 rounded-xl p-8">
-              <h3 className="text-2xl font-bold text-white mb-6">Profil Bilgileri</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">Profile Information</h3>
 
               <form onSubmit={handleUpdateProfile} className="space-y-6">
                 {/* Name Fields */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="firstName" className="block text-sm font-medium text-gray-300 mb-2">
-                      İsim
+                      First Name
                     </label>
                     <input
                       id="firstName"
@@ -316,13 +316,13 @@ export default function Dashboard() {
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
                       className="w-full px-4 py-3 bg-zinc-900 border border-zinc-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent transition-all"
-                      placeholder="İsminiz"
+                      placeholder="Your first name"
                     />
                   </div>
 
                   <div>
                     <label htmlFor="lastName" className="block text-sm font-medium text-gray-300 mb-2">
-                      Soyisim
+                      Last Name
                     </label>
                     <input
                       id="lastName"
@@ -330,7 +330,7 @@ export default function Dashboard() {
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
                       className="w-full px-4 py-3 bg-zinc-900 border border-zinc-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent transition-all"
-                      placeholder="Soyisminiz"
+                      placeholder="Your last name"
                     />
                   </div>
                 </div>
@@ -338,7 +338,7 @@ export default function Dashboard() {
                 {/* Username (Read-only) */}
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">
-                    Kullanıcı Adı (değiştirilemez)
+                    Username (cannot be changed)
                   </label>
                   <input
                     type="text"
@@ -354,13 +354,13 @@ export default function Dashboard() {
                     <div className="text-2xl font-bold text-red-600 mb-1">
                       {user.profile_image ? '✓' : '○'}
                     </div>
-                    <div className="text-sm text-gray-400">Profil Resmi</div>
+                    <div className="text-sm text-gray-400">Profile Image</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-amber-500 mb-1">
                       {firstName && lastName ? '✓' : '○'}
                     </div>
-                    <div className="text-sm text-gray-400">Tam İsim</div>
+                    <div className="text-sm text-gray-400">Full Name</div>
                   </div>
                 </div>
 
@@ -376,10 +376,10 @@ export default function Dashboard() {
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
-                      Güncelleniyor...
+                      Updating...
                     </span>
                   ) : (
-                    'Profili Güncelle'
+                    'Update Profile'
                   )}
                 </button>
               </form>
