@@ -137,7 +137,7 @@ export default function Home() {
         <header className="relative z-20 px-6 py-6 border-b border-white/10 backdrop-blur-md bg-white/5">
           <div className="max-w-7xl mx-auto flex justify-between items-center">
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold text-white tracking-wider">BEN'S BAP'S</h1>
+              <h1 className="text-2xl md:text-3xl font-bold text-white tracking-wider">BEN&apos;S BAP&apos;S</h1>
             </div>
             <nav className="hidden md:flex gap-8 items-center">
               <button onClick={() => setShowLogin(false)} className="text-white hover:text-red-400 transition font-medium border-b-2 border-red-600">
@@ -462,7 +462,7 @@ export default function Home() {
                   <svg className="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                   <svg className="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                 </div>
-                <p className="text-gray-600 italic leading-relaxed">"{item.comment}"</p>
+                <p className="text-gray-600 italic leading-relaxed">&quot;{item.comment}&quot;</p>
                 <div className="pt-6 border-t border-gray-200 flex items-center gap-4">
                   <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-600 font-bold">
                     {item.name[0]}
@@ -481,7 +481,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="py-16 bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto px-6 text-center space-y-12">
-          <div className="text-3xl font-bold tracking-wider">BEN'S BAP'S</div>
+          <div className="text-3xl font-bold tracking-wider">BEN&apos;S BAP&apos;S</div>
           <nav className="flex flex-wrap justify-center gap-10 text-gray-400 font-medium">
             <a href="#" className="hover:text-white transition">Ana Sayfa</a>
             <a href="#" className="hover:text-white transition">Menü</a>
@@ -489,7 +489,7 @@ export default function Home() {
             <a href="#" className="hover:text-white transition">İletişim</a>
           </nav>
           <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-gray-500 text-sm">
-            <div>© 2026 BEN'S BAP'S. Tüm hakları saklıdır.</div>
+            <div>© 2026 BEN&apos;S BAP&apos;S. Tüm hakları saklıdır.</div>
             <div className="flex gap-6">
               <a href="#" className="hover:text-white transition">Instagram</a>
               <a href="#" className="hover:text-white transition">Facebook</a>

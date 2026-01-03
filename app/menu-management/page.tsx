@@ -185,7 +185,7 @@ export default function MenuManagement() {
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-6">
-              <h1 className="text-2xl font-bold text-white">BEN'S BAP'S</h1>
+              <h1 className="text-2xl font-bold text-white">BEN&apos;S BAP&apos;S</h1>
               <nav className="hidden md:flex gap-4">
                 <button
                   onClick={() => router.push('/dashboard')}

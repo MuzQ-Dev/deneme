@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 
 type OrderStatus = 'pending_payment' | 'paid' | 'accepted' | 'rejected' | 'cancelled';
@@ -49,16 +49,7 @@ export default function OrdersManagementPage() {
   const [message, setMessage] = useState('');
   const [saving, setSaving] = useState(false);
 
-  useEffect(() => {
-    const userStr = localStorage.getItem('user');
-    if (!userStr) {
-      router.push('/');
-      return;
-    }
-    fetchOrders();
-  }, [router]);
-
-  const fetchOrders = async () => {
+  const fetchOrders = useCallback(async () => {
     setLoading(true);
     try {
       const url = filter === 'all' ? '/api/orders' : `/api/orders?status=${filter}`;
@@ -79,7 +70,16 @@ export default function OrdersManagementPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filter]);
+
+  useEffect(() => {
+    const userStr = localStorage.getItem('user');
+    if (!userStr) {
+      router.push('/');
+      return;
+    }
+    fetchOrders();
+  }, [router, fetchOrders]);
 
   useEffect(() => {
     fetchOrders();
@@ -148,7 +148,7 @@ export default function OrdersManagementPage() {
       <header className="bg-black/50 backdrop-blur-sm border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-6">
-            <div className="text-2xl font-bold text-white">BEN'S BAP'S</div>
+            <div className="text-2xl font-bold text-white">BEN&apos;S BAP&apos;S</div>
             <nav className="hidden md:flex gap-4">
               <button onClick={() => router.push('/dashboard')} className="text-gray-400 hover:text-white transition">
                 Profil
