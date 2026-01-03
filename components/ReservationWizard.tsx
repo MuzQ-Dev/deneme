@@ -159,7 +159,7 @@ export function ReservationWizard({ items }: Props) {
       const data = await res.json();
 
       if (!data.success) {
-        setMessage(data.message || 'Ödeme başlatılamadı.');
+        setMessage(data.message || 'Failed to start payment.');
         return;
       }
 
@@ -168,9 +168,9 @@ export function ReservationWizard({ items }: Props) {
         return;
       }
 
-      setMessage('Ödeme bağlantısı oluşturulamadı.');
+      setMessage('Failed to create payment link.');
     } catch (e) {
-      setMessage('Ödeme başlatılırken hata oluştu.');
+      setMessage('An error occurred while starting payment.');
     } finally {
       setSubmitting(false);
     }
@@ -185,10 +185,10 @@ export function ReservationWizard({ items }: Props) {
               <span className="text-xs font-bold uppercase tracking-widest text-red-700">Reservation</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
-              Rezervasyon ve ödeme
+              Reservation & Payment
             </h2>
             <p className="text-gray-600 text-lg">
-              Bilgileri doldurun, menüyü seçin, kart ile ödeme yapın. Sipariş admin paneline düşer.
+              Fill in your details, select your menu, and pay securely. Your order will appear in the admin panel.
             </p>
           </div>
 

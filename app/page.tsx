@@ -267,28 +267,27 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             <div className="lg:col-span-5 space-y-6">
               <div className="inline-flex items-center rounded-full border border-red-200 bg-red-50 px-4 py-2">
-                <span className="text-xs font-bold uppercase tracking-widest text-red-700">Neden Biz?</span>
+                <span className="text-xs font-bold uppercase tracking-widest text-red-700">Why Us?</span>
               </div>
               <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
-                Etkinliğinizi kolaylaştıran,
-                <span className="text-red-600"> lezzeti öne çıkaran</span> hizmet.
+                Service that simplifies your event,
+                <span className="text-red-600"> highlights flavour</span>.
               </h2>
               <p className="text-gray-600 text-lg leading-relaxed">
-                Süreç yönetiminden sunuma kadar her detay planlı ilerler. Net iletişim, düzenli operasyon ve
-                standardı koruyan bir ekip ile çalışırsınız.
+                Every detail from process management to presentation is planned. You work with a team that maintains clear communication, regular operations, and standards.
               </p>
               <div className="flex flex-wrap gap-3 pt-2">
                 <span className="inline-flex items-center gap-2 rounded-full bg-white border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 shadow-sm">
                   <span className="h-2 w-2 rounded-full bg-red-500" />
-                  Şeffaf fiyatlandırma
+                  Transparent pricing
                 </span>
                 <span className="inline-flex items-center gap-2 rounded-full bg-white border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 shadow-sm">
                   <span className="h-2 w-2 rounded-full bg-red-500" />
-                  Hızlı planlama
+                  Quick planning
                 </span>
                 <span className="inline-flex items-center gap-2 rounded-full bg-white border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 shadow-sm">
                   <span className="h-2 w-2 rounded-full bg-red-500" />
-                  Tutarlı kalite
+                  Consistent quality
                 </span>
               </div>
             </div>
@@ -297,8 +296,8 @@ export default function Home() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
                   {
-                    title: 'Zamanında ve planlı operasyon',
-                    desc: 'Kurulumdan servise kadar net akış; sürpriz yok.',
+                    title: 'Timely and planned operations',
+                    desc: 'Clear flow from setup to service; no surprises.',
                     icon: (
                       <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none">
                         <path d="M12 8v5l3 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -307,8 +306,8 @@ export default function Home() {
                     ),
                   },
                   {
-                    title: 'Damak tadına uygun menüler',
-                    desc: 'İçeriği hızlıca düzenler, seçenekleri net sunarız.',
+                    title: 'Menus tailored to taste',
+                    desc: 'We quickly organise content and present options clearly.',
                     icon: (
                       <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none">
                         <path d="M4 7h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -318,8 +317,8 @@ export default function Home() {
                     ),
                   },
                   {
-                    title: 'Temiz sunum, güçlü marka algısı',
-                    desc: 'Minimal ve şık servis; etkinliğinizi bir üst seviyeye taşır.',
+                    title: 'Clean presentation, strong brand perception',
+                    desc: 'Minimal and elegant service; takes your event to the next level.',
                     icon: (
                       <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none">
                         <path d="M7 20h10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -330,8 +329,8 @@ export default function Home() {
                     ),
                   },
                   {
-                    title: 'Hızlı iletişim ve net süreç',
-                    desc: 'Tek noktadan takip; kararlar hızlı, süreçler şeffaf.',
+                    title: 'Quick communication and clear process',
+                    desc: 'Single point of tracking; decisions are quick, processes are transparent.',
                     icon: (
                       <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none">
                         <path d="M7 8h10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -393,7 +392,7 @@ export default function Home() {
               </div>
             ) : filteredItems.length === 0 ? (
               <div className="col-span-2 text-center py-20">
-                <p className="text-gray-500 text-lg">Bu kategoride menü bulunmuyor.</p>
+                <p className="text-gray-500 text-lg">No menu items found in this category.</p>
               </div>
             ) : (
               filteredItems.map((item) => (
