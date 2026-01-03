@@ -488,16 +488,27 @@ export default function Home() {
           </nav>
           <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-gray-500 text-sm">
             <div>© 2026 BEN&apos;S BAP&apos;S. All rights reserved.</div>
-            <div>
-              Made by{' '}
-              <a 
-                href="https://muzq.online" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="hover:text-white transition font-medium"
+            <div className="flex items-center gap-6">
+              <button
+                onClick={() => setShowLogin(true)}
+                className="hover:text-white transition flex items-center gap-2"
+                title="Admin Login"
               >
-                Muzq.online
-              </a>
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              </button>
+              <div>
+                Made by{' '}
+                <a 
+                  href="https://muzq.online" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition font-medium"
+                >
+                  Muzq.online
+                </a>
+              </div>
             </div>
           </div>
         </div>
