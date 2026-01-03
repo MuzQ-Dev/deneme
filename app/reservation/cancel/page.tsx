@@ -1,8 +1,9 @@
 'use client';
 
+import { Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-export default function ReservationCancelPage() {
+function CancelContent() {
   const router = useRouter();
   const params = useSearchParams();
   const orderId = params.get('order_id');
@@ -31,6 +32,18 @@ export default function ReservationCancelPage() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function ReservationCancelPage() {
+  return (
+    <Suspense fallback={
+      <main className="min-h-screen bg-gray-50 flex items-center justify-center px-6">
+        <div className="text-gray-600">Yükleniyor...</div>
+      </main>
+    }>
+      <CancelContent />
+    </Suspense>
   );
 }
 

@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 
-export default function ReservationSuccessPage() {
+function SuccessContent() {
   const params = useSearchParams();
   const router = useRouter();
   const [status, setStatus] = useState<'loading' | 'ok' | 'error'>('loading');
@@ -73,6 +73,18 @@ export default function ReservationSuccessPage() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function ReservationSuccessPage() {
+  return (
+    <Suspense fallback={
+      <main className="min-h-screen bg-gray-50 flex items-center justify-center px-6">
+        <div className="text-gray-600">Yükleniyor...</div>
+      </main>
+    }>
+      <SuccessContent />
+    </Suspense>
   );
 }
 
