@@ -105,18 +105,18 @@ export default function Home() {
               "addressLocality": "London"
             },
             "telephone": "+44 756 1626 764",
-            "url": typeof window !== 'undefined' ? window.location.origin : "https://bensbaps.com",
-            "menu": menuItems.length > 0 ? menuItems.map(item => ({
+            "url": "https://bensbaps.com",
+            "menu": (menuItems && Array.isArray(menuItems) && menuItems.length > 0) ? menuItems.map(item => ({
               "@type": "MenuItem",
-              "name": item.title,
-              "description": item.description,
+              "name": item.title || "",
+              "description": item.description || "",
               "offers": {
                 "@type": "Offer",
-                "price": item.price,
+                "price": Number(item.price) || 0,
                 "priceCurrency": "GBP"
               }
             })) : []
-          })
+          }, null, 2)
         }}
       />
     <main className="relative bg-white text-gray-900 overflow-x-hidden font-sans">
