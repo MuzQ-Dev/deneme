@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /menu-management
+Disallow: /orders-management
+Disallow: /api/
+
+Sitemap: https://bensbaps.com/sitemap.xml
+
